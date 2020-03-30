@@ -5,6 +5,14 @@ fichas = 1000
 nome = input("Olá jogador, qual o seu nome? ")
 jogar = input("Vamos jogar Craps, {}? (s/n): ".format(nome))
 
+#Figuras dados
+d1 = "+- - - -+\n|       |\n|   *   |\n|       |\n+- - - -+"
+d2 = "+- - - -+\n| *     |\n|       |\n|     * |\n+- - - -+"
+d3 = "+- - - -+\n| *     |\n|   *   |\n|     * |\n+- - - -+"
+d4 = "+- - - -+\n| *   * |\n|       |\n| *   * |\n+- - - -+"
+d5 = "+- - - -+\n| *   * |\n|   *   |\n| *   * |\n+- - - -+"
+d6 = "+- - - -+\n| *   * |\n| *   * |\n| *   * |\n+- - - -+"
+
 #Loop para setar jogar True ou False. Vai fazer mais sentido mais para frente quando quisermos fechar o loop grande do jogo
 while type(jogar) == str:
     if jogar == 's':
