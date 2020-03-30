@@ -38,11 +38,6 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
         valor_guardado = soma_dados
         print("Você segue agora para a fase 'Point'.")
         
-
-
-
-
-
 #JOGADA FIELD
 def field(soma_dados, aposta, fichas):
     if soma_dados in {5, 6, 7, 8}:
@@ -80,3 +75,6 @@ def twelve(soma_dados, aposta, fichas):
         fichas += 30*aposta
         return fichas
 
+while fichas > 0 and True:
+    tipo = input('Escolha o seu tipo de aposta:')
+    if tipo 
