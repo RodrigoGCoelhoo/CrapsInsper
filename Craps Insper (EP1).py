@@ -71,12 +71,12 @@ def pass_line_bet(fichas, soma_dados):
         fase = "Point"
         print(printar_dados())
         valor_guardado = soma_dados
-        print("\033[1;34m{}, agora você segue agora para a fase 'Point' já que a soma dos dados deu \033[1;31m{}\033[0;37m.".format(nome))
+        print("\033[1;34m{}\033[0;37m, agora você segue agora para a fase \033[1;34m{}\033[0;37m já que a soma dos dados deu \033[1;31m{}\033[0;37m.".format(nome, fase, soma_dados))
         while True:
 
             dado_1, dado_2, soma_dados = dados()
 
-            print(loop_jogar(fichas))
+            print(loop_jogar(fichas, soma_dados))
 
             if soma_dados == valor_guardado:
                 fichas += aposta
@@ -161,7 +161,7 @@ def loop_jogar(fichas, soma_dados):
     while True:
         resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
-        if resposta == 'pass':
+        if resposta == 'pass' and fase != "Point":
             time.sleep(1)
             print("\033[1;34m{}\033[0;37m apostou na jogada \033[1;32mPass Line Bet\033[1;35m {} \033[0;37mfichas.". format(nome, aposta))
             time.sleep(1)
