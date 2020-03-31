@@ -29,7 +29,14 @@ def dados():
     soma_dados = dado_1 + dado_2
     return dado_1, dado_2, soma_dados
 
-def dados_front(dado_1, dado_2)
+def dados_front(dado):
+    if dado == 1:
+        return d1
+    elif dado == 2:
+        return d2
+    elif dado == 3:
+        return
+    
 
 
 #Funções para jogadas
@@ -107,7 +114,6 @@ while fichas > 0 and jogar:
     dado_1, dado_2, soma_dados = soma_dados()
 
     while True:
-        print('Você está na fase \033[1;34mCome Out')
         tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
         if tipo == 'pass':
@@ -123,10 +129,6 @@ while fichas > 0 and jogar:
             fichas = twelve()
             break
         else:
-            print('\033[1;31mVocê não escreveu direito, digite novamente de acordo com a legenda!')
-
-            Tokki Pato 
-            tooooooo
-
+            print('\033[1;31Você não escreveu direito, digite novamente de acordo com a legenda!')
             
             
