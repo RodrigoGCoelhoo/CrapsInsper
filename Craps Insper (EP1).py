@@ -82,7 +82,4 @@ def twelve(soma_dados, aposta, fichas):
         print("PARABÉNS {}, você ganhou muito!!!",format(nome))
         fichas += 30*aposta
         return fichas
-
-while fichas > 0 and True:
-    tipo = input('Escolha o seu tipo de aposta:')
-    if tipo 
+print (d6)
