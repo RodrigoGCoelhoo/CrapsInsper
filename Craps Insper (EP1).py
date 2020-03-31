@@ -3,8 +3,8 @@ import time
 
 #Configuraçøes básicas
 
-nome = input("Olá jogador, qual o seu nome? ")
-jogar = input("Vamos jogar Craps, {}? (s/n): ".format(nome))
+nome = input("\033[0;37mOlá jogador, qual o seu nome? \n")
+jogar = input("\033[0;37mVamos jogar \033[1;37mCraps\033[0;37m, \033[1;34m{}\033[0;37m? (s/n): \n".format(nome))
 
 #Figuras dados
 fig_d1 = "+- - - -+\n|       |\n|   *   |\n|       |\n+- - - -+"
@@ -38,13 +38,19 @@ def dados_front(dado):
             return item
 
 #Função que printa os dados usando a função dados_front
-def printar_dados()
-    print("Dado 1:") 
+def printar_dados():
+    print("\033[1;37mDado 1:")
+    time.sleep(1)
     print(dados_front(dado_1))
+    time.sleep(1)
     print("Dado 2:")
+    time.sleep(1)
     print(dados_front(dado_2))
-    print("Soma dos dados:", soma_dados)
-    return 
+    time.sleep(1)
+    print("Soma dos dados:")
+    time.sleep(1)
+    soma_str = '\033[1;31m{}\033[0;37m'.format(soma_dados)
+    return soma_str
     
     
 #Funções para jogadas:
@@ -52,34 +58,38 @@ def printar_dados()
 #JOGADA PASS LINE BET
 def pass_line_bet(fichas):
     if fase != "Come out":
-        return "Essa jogada só pode ser feita na rodada 'Come out'."
+        return "A jogada \033[1;32mPass Line Bet só pode ser feita na rodada 'Come out'."
     if soma_dados in {7, 11}:
-        print("Parabéns {}, você ganhou!".format(nome))
+        print(printar_dados())
+        print("Parabéns {}, você ganhou com a jogada \033[1;32mPass Line bet\033[0;37m!".format(nome))
         fichas += aposta
         return fichas
     elif soma_dados in {2, 3, 12}:
-        print("Infelizmente você perdeu, {}.".format(nome))
+        print(printar_dados())
+        print("Infelizmente, com a jogada \033[1;32mPass Line bet\033[0;37m você perdeu, {}.".format(nome))
         fichas -= aposta
         return fichas
     else:
         fase = "Point"
         valor_guardado = soma_dados
-        print("Você segue agora para a fase 'Point'.")
+        print("{}, agora você segue agora para a fase 'Point'.".format(nome))
         while True:
 
             dado_1, dado_2, soma_dados = dados()
 
             while True:
-                tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \033[1;33mfield \n\
-\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;32mNenhuma nova aposta = \033[1;33mn\n\033[1;37m: ' )
-                if tipo == 'field':
-                    fichas = field(aposta, fichas)
+                resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \033[1;33mfield \n\
+\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;32mNenhuma nova aposta = \033[1;33mn\n\033[1;37m : ' )
+                if resposta == 'field':
+                    fichas = field(fichas)
                     break
-                elif tipo == 'any':
-                    fichas = any_crops(aposta, fichas)
+                elif resposta == 'any':
+                    fichas = any_crops(fichas)
                     break
-                elif tipo == 'twelve':
-                    fichas = twelve(aposta, fichas)
+                elif resposta == 'twelve':
+                    fichas = twelve(fichas)
+                    break
+                elif resposta == 'n':
                     break
                 else:
                     print('\033[1;31Você não escreveu direito, digite novamente de acordo com a legenda!')
@@ -97,82 +107,120 @@ def pass_line_bet(fichas):
                 
         
 #JOGADA FIELD
-<<<<<<< HEAD
-def field(fichas)
-    print("Dado 1:\n", dados_front(dado_1))
-    print("Dado 2:\n", dados_front(dado_2))
-    print("Soma dos dados: ", soma_dados)
-=======
 def field(fichas):
->>>>>>> a0a9fb2644d548fffcfc893d49bcbabe93e5bb19
     if soma_dados in {5, 6, 7, 8}:
-        print ("Infelizmente você perdeu, {}!".format(nome))
+        print(printar_dados())
+        time.sleep(1)
+        print ("\033[0;37mInfelizmente, com essa jogada \033[1;32mField\033[0;37m você perdeu \033[1;35m{} \033[0;37mfichas, \033[1;34m{}\033[0;37m!".format(aposta,nome))
         fichas -= aposta
+        time.sleep(3)
+        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
     elif soma_dados in {3, 4, 9, 10, 11}:
-        print("Parabéns {}, você ganhou!".format(nome))
+        print(printar_dados())
+        time.sleep(1)
+        print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mField\033[0;37m você ganhou \033[1;35m{} \033[0;37mfichas!".format(nome, aposta))
         fichas += aposta
+        time.sleep(3)
+        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
     elif soma_dados == 2:
-        print("Parabéns {}, você ganhou o dobro!".format(nome))
+        print(printar_dados())
+        time.sleep(1)
+        print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mField\033[0;37m você ganhou o dobro: \033[1;35m{} \033[0;37mfichas!".format(nome, aposta*2))
         fichas += 2*aposta
+        time.sleep(3)
+        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
     else:
-        print("Parabéns {}, você ganhou o triplo!".format(nome))
+        print(printar_dados())
+        time.sleep(1)
+        print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mField\033[0;37m você ganhou o triplo: \033[1;35m{} \033[0;37mfichas!".format(nome, fichas*3))
         fichas += 3*aposta
+        time.sleep(3)
+        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
 
 #JOGADA ANY CROPS
 def any_crops(fichas):
     if soma_dados in {2, 3, 12}:
-        print("Parabéns {}, você ganhou 7x!!".format(nome))
+        print(printar_dados())
+        print("\033[0;37mParabéns {}, com essa jogada \033[1;32mAny Crops\033[0;37mvocê ganhou 7x!!".format(nome))
         fichas += 7*aposta
+        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
         return fichas
     else:
-        print("Infelizmente você perdeu, {}".format(nome))
+        print(printar_dados())
+        print("\033[0;37mInfelizmente, com essa jogada \033[1;32mAny Crops\033[0;37m você perdeu, {}".format(nome))
         fichas -= aposta
+        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
         return fichas
 
 #JOGADA TWELVE
 def twelve(fichas):
     if soma_dados == 12:
-        print("PARABÉNS {}, você ganhou muito!!!",format(nome))
+        print(printar_dados())
+        print("\033[0;37mPARABÉNS {}, com essa jogada \033[1;32mTwelve\033[0;37m você ganhou muito!!!".format(nome))
         fichas += 30*aposta
+        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
+        return fichas
+    else:
+        print(printar_dados())
+        print("\033[0;37mInfelizmente, com essa jogada \033[1;32mTwelve\033[0;37m você perdeu, {}".format(nome))
+        fichas -= aposta
+        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
         return fichas
 
 #Loop grande do jogo
-fichas = 9000
+fichas = 1000
 while fichas > 0 and jogar:
 
-    dado_1, dado_2, soma_dados = soma_dados()
-    print('Você tem {} fichas'.format(fichas))
-    print('Você está na fase \033[1;34mCome Out')
+    dado_1, dado_2, soma_dados = dados()
+
     fase = 'Come Out'
+    print('Você tem \033[1;35m{}\033[0;37m fichas e está na fase \033[1;34m{}\033[0;37m.'.format(fichas, fase))
+    
+    aposta = int(input("\033[1;31mQual o valor da sua aposta?\n\033[0;37m"))
+    while aposta < 0 or aposta > fichas:
+        aposta = input("\033[0;37mAposte um valor entre \033[1;37m0 e {}\033[0;37m.\nTente novamente: ".format(fichas))
 
 
     while True:
-        tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
+        resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
-        if tipo == 'pass':
+        if resposta == 'pass':
+            print("\033[1;34m{}\033[0;37m apostou na jogada \033[1;32mPass Line Bet\033[1;35m {} \033[0;37mfichas.". format(nome, aposta))
             fichas = pass_line_bet(fichas)
             break
-        elif tipo == 'field':
+        elif resposta == 'field':
+            time.sleep(1)
+            print("\033[1;34m{}\033[0;37m apostou \033[1;35m{} \033[0;37mfichas na jogada \033[1;32mField\033[0;37m.". format(nome, aposta))
+            time.sleep(2)
             fichas = field(fichas)
             break
-        elif tipo == 'any':
+        elif resposta == 'any':
             fichas = any_crops(fichas)
             break
-        elif tipo == 'twelve':
+        elif resposta == 'twelve':
             fichas = twelve(fichas)
             break
         else:
-            print('\033[1;31mVocê não escreveu direito, digite novamente de acordo com a legenda!')
+            print('\033[1;31mOcorreu um erro\033[0;37m, digite novamente de acordo com a legenda!')
 
-if fichas <= 0:
-    print("Você perdeu todas as fichas")
+    if fichas == 0:
+        time.sleep(1)
+        print("Como você perdeu todas as fichas, o jogo acabou.\nAté a próxima, \033[1;34m{}\033[0;37m!".format(nome))
+        break
+
+    time.sleep(1)
+    jogar_novamente = input('\033[0;37mDeseja continuar jogando? (s/n)\n')
+    if jogar_novamente == 'n' and fichas != 0:
+        jogar = False
+        print("Obrigado pelo jogo, \033[1;34m{}\033[0;37m! Até mais.".format(nome))
 
 
 
 
-            
+
+
             
