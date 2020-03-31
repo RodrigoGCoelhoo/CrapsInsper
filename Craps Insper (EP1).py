@@ -1,4 +1,5 @@
 import random as rd
+import time
 
 #Configuraçøes básicas
 fichas = 1000
@@ -29,17 +30,15 @@ def dados():
     soma_dados = dado_1 + dado_2
     return dado_1, dado_2, soma_dados
 
+#Função que retorna a imagem do dado
 def dados_front(dado):
-    if dado == 1:
-        return d1
-    elif dado == 2:
-        return d2
-    elif dado == 3:
-        return
+    lista_dados = [d1,d2,d3,d4,d5,d6]
+    for item in lista_dados:
+        if (lista_dados.index(item) + 1) == dado:
+            return item
     
 
-
-#Funções para jogadas
+#Funções para jogadas:
 
 #JOGADA PASS LINE BET
 def pass_line_bet(fase, soma_dados, aposta, fichas):
@@ -58,15 +57,33 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
         valor_guardado = soma_dados
         print("Você segue agora para a fase 'Point'.")
         while True:
-            soma_dados = soma_dados()[2]
+
+            dado_1, dado_2, soma_dados = soma_dados()
+
+            while True:
+                tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \
+                \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
+                if tipo == 'field':
+                    fichas = field()
+                    break
+                elif tipo == 'any':
+                    fichas = any_crops()
+                    break
+                elif tipo == 'twelve':
+                    fichas = twelve()
+                    break
+                else:
+                    print('\033[1;31Você não escreveu direito, digite novamente de acordo com a legenda!')
+
             if soma_dados == valor_guardado:
-                jogador ganha
+                fichas += aposta
                 fase = 'Come out'
                 break
             elif soma_dados == 7:
-                jogador perde
+                fichas -= aposta
                 fase = 'Come out'
                 break
+        return fichas
             
                 
         
