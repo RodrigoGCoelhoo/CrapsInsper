@@ -57,8 +57,6 @@ def printar_dados():
 
 #JOGADA PASS LINE BET
 def pass_line_bet(fichas):
-    if fase != "Come out":
-        return "A jogada \033[1;32mPass Line Bet só pode ser feita na rodada 'Come out'."
     if soma_dados in {7, 11}:
         print(printar_dados())
         print("Parabéns {}, você ganhou com a jogada \033[1;32mPass Line bet\033[0;37m!".format(nome))
@@ -145,9 +143,9 @@ def field(fichas):
 def any_crops(fichas):
     if soma_dados in {2, 3, 12}:
         print(printar_dados())
-        print("\033[0;37mParabéns {}, com essa jogada \033[1;32mAny Crops\033[0;37mvocê ganhou 7x!!".format(nome))
+        print("\033[0;37mParabéns \033[1;34m{}, com essa jogada \033[1;32mAny Crops\033[0;37mvocê ganhou 7x!!".format(nome))
         fichas += 7*aposta
-        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
+        print('\033[0;37mAgora você tem {} \033[0;37mfichas'.format(fichas))
         return fichas
     else:
         print(printar_dados())
@@ -162,13 +160,13 @@ def twelve(fichas):
         print(printar_dados())
         print("\033[0;37mPARABÉNS {}, com essa jogada \033[1;32mTwelve\033[0;37m você ganhou muito!!!".format(nome))
         fichas += 30*aposta
-        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
+        print('\033[0;37mAgora você tem {} \033[0;37mfichas'.format(fichas))
         return fichas
     else:
         print(printar_dados())
         print("\033[0;37mInfelizmente, com essa jogada \033[1;32mTwelve\033[0;37m você perdeu, {}".format(nome))
         fichas -= aposta
-        print('\033[0;37mAgora você tem {} fichas'.format(fichas))
+        print('\033[0;37mAgora você tem {} \033[0;37mfichas'.format(fichas))
         return fichas
 
 #Loop grande do jogo
@@ -182,14 +180,16 @@ while fichas > 0 and jogar:
     
     aposta = int(input("\033[1;31mQual o valor da sua aposta?\n\033[0;37m"))
     while aposta < 0 or aposta > fichas:
-        aposta = input("\033[0;37mAposte um valor entre \033[1;37m0 e {}\033[0;37m.\nTente novamente: ".format(fichas))
+        aposta = int(input("\033[0;37mAposte um valor entre \033[1;37m0 e {}\033[0;37m.\nTente novamente: ".format(fichas)))
 
 
     while True:
         resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
         if resposta == 'pass':
+            time.sleep(1)
             print("\033[1;34m{}\033[0;37m apostou na jogada \033[1;32mPass Line Bet\033[1;35m {} \033[0;37mfichas.". format(nome, aposta))
+            time.sleep(1)
             fichas = pass_line_bet(fichas)
             break
         elif resposta == 'field':
