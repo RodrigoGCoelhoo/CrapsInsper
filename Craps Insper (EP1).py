@@ -125,7 +125,7 @@ def twelve(fichas):
         return fichas
 
 #Loop grande do jogo
-fichas = 1000
+fichas = 9000
 while fichas > 0 and jogar:
 
     dado_1, dado_2, soma_dados = soma_dados()
