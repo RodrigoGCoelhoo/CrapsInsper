@@ -125,5 +125,8 @@ while fichas > 0 and jogar:
         else:
             print('\033[1;31mVocê não escreveu direito, digite novamente de acordo com a legenda!')
 
+            Tokki Pato 
+            tooooooo
+
             
             
