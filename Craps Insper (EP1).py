@@ -59,13 +59,17 @@ def printar_dados():
 def pass_line_bet(fichas, soma_dados):
     if soma_dados in {7, 11}:
         print(printar_dados())
-        print("Parabéns {}, você ganhou com a jogada \033[1;32mPass Line bet\033[0;37m!".format(nome))
+        time.sleep(1)
+        print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mPass Line Bet\033[0;37m você ganhou \033[1;35m{} \033[0;37mfichas!".format(nome, aposta))
         fichas += aposta
+        time.sleep(3)
         return fichas
     elif soma_dados in {2, 3, 12}:
         print(printar_dados())
-        print("Infelizmente, com a jogada \033[1;32mPass Line bet\033[0;37m você perdeu, {}.".format(nome))
+        time.sleep(1)
+        print ("\033[0;37mInfelizmente, com essa jogada \033[1;32mPass Line Bet\033[0;37m você perdeu \033[1;35m{} \033[0;37mfichas, \033[1;34m{}\033[0;37m!".format(aposta,nome))
         fichas -= aposta
+        time.sleep(3)
         return fichas
     else:
         fase = "Point"
@@ -98,7 +102,6 @@ def field(fichas):
         print ("\033[0;37mInfelizmente, com essa jogada \033[1;32mField\033[0;37m você perdeu \033[1;35m{} \033[0;37mfichas, \033[1;34m{}\033[0;37m!".format(aposta,nome))
         fichas -= aposta
         time.sleep(3)
-        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
     elif soma_dados in {3, 4, 9, 10, 11}:
         print(printar_dados())
@@ -106,7 +109,6 @@ def field(fichas):
         print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mField\033[0;37m você ganhou \033[1;35m{} \033[0;37mfichas!".format(nome, aposta))
         fichas += aposta
         time.sleep(3)
-        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
     elif soma_dados == 2:
         print(printar_dados())
@@ -114,7 +116,6 @@ def field(fichas):
         print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mField\033[0;37m você ganhou o dobro: \033[1;35m{} \033[0;37mfichas!".format(nome, aposta*2))
         fichas += 2*aposta
         time.sleep(3)
-        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
     else:
         print(printar_dados())
@@ -122,7 +123,6 @@ def field(fichas):
         print("\033[0;37mParabéns \033[1;34m{}\033[0;37m, com essa jogada \033[1;32mField\033[0;37m você ganhou o triplo: \033[1;35m{} \033[0;37mfichas!".format(nome, fichas*3))
         fichas += 3*aposta
         time.sleep(3)
-        print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
         return fichas
 
 #JOGADA ANY CROPS
@@ -159,9 +159,13 @@ def twelve(fichas):
 # Funcao do jogo
 def loop_jogar(fichas, soma_dados):
     while True:
-        resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
+        if fase != 'Point':
+            resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
-        if resposta == 'pass' and fase != "Point":
+        else:
+            resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \
+\033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
+        if resposta == 'pass':
             time.sleep(1)
             print("\033[1;34m{}\033[0;37m apostou na jogada \033[1;32mPass Line Bet\033[1;35m {} \033[0;37mfichas.". format(nome, aposta))
             time.sleep(1)
@@ -182,7 +186,9 @@ def loop_jogar(fichas, soma_dados):
         else:
             print('\033[1;31mOcorreu um erro\033[0;37m, digite novamente de acordo com a legenda!')
 
-    return ''
+    print('\033[0;37mAgora você tem \033[1;35m{} \033[0;37mfichas.'.format(fichas))
+
+    return fichas
 
 
 #Loop grande do jogo
@@ -198,7 +204,7 @@ while fichas > 0 and jogar:
     while aposta < 0 or aposta > fichas:
         aposta = int(input("\033[0;37mAposte um valor entre \033[1;37m0 e {}\033[0;37m.\nTente novamente: ".format(fichas)))
 
-    print(loop_jogar(fichas, soma_dados))
+    fichas = loop_jogar(fichas, soma_dados)
 
     if fichas == 0:
         time.sleep(1)
