@@ -47,8 +47,8 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
         print("Você segue agora para a fase 'Point'.")
         
 #JOGADA FIELD
-def field(soma_dados, aposta, fichas):
-    if soma_dados in {5, 6, 7, 8}:
+def field(aposta, fichas):
+    if soma_dados() in {5, 6, 7, 8}:
         print ("Infelizmente você perdeu, {}!".format(nome))
         fichas -= aposta
         return fichas
@@ -85,7 +85,8 @@ def twelve(soma_dados, aposta, fichas):
 
 while fichas > 0 and jogar:
     while True:
-        tipo = input('Escolha o seu tipo de aposta: \nPass Line Bat = pass \nField = field \nAny Crops = any \nTwelve = twelve \n:')
+        tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
+\033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
         if tipo == 'pass':
             fichas = pass_line_bet()
             break
@@ -99,6 +100,6 @@ while fichas > 0 and jogar:
             fichas = twelve()
             break
         else:
-            print('Você não escreveu direito, digite novamente de acordo com a legenda')
+            print('\033[1;31Você não escreveu direito, digite novamente de acordo com a legenda!')
             
             
