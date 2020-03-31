@@ -82,4 +82,23 @@ def twelve(soma_dados, aposta, fichas):
         print("PARABÉNS {}, você ganhou muito!!!",format(nome))
         fichas += 30*aposta
         return fichas
-print (d6)
+
+while fichas > 0 and jogar:
+    while True:
+        tipo = input('Escolha o seu tipo de aposta: \nPass Line Bat = pass \nField = field \nAny Crops = any \nTwelve = twelve \n:')
+        if tipo == 'pass':
+            fichas = pass_line_bet()
+            break
+        elif tipo == 'field':
+            fichas = field()
+            break
+        elif tipo == 'any':
+            fichas = any_crops()
+            break
+        elif tipo == 'twelve':
+            fichas = twelve()
+            break
+        else:
+            print('Você não escreveu direito, digite novamente de acordo com a legenda')
+            
+            
