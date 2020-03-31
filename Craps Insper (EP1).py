@@ -97,10 +97,14 @@ def pass_line_bet(fichas):
                 
         
 #JOGADA FIELD
+<<<<<<< HEAD
 def field(fichas)
     print("Dado 1:\n", dados_front(dado_1))
     print("Dado 2:\n", dados_front(dado_2))
     print("Soma dos dados: ", soma_dados)
+=======
+def field(fichas):
+>>>>>>> a0a9fb2644d548fffcfc893d49bcbabe93e5bb19
     if soma_dados in {5, 6, 7, 8}:
         print ("Infelizmente você perdeu, {}!".format(nome))
         fichas -= aposta
@@ -142,10 +146,11 @@ while fichas > 0 and jogar:
 
     dado_1, dado_2, soma_dados = soma_dados()
     print('Você tem {} fichas'.format(fichas))
+    print('Você está na fase \033[1;34mCome Out')
+    fase = 'Come Out'
 
 
     while True:
-        print('Você está na fase \033[1;34mCome Out')
         tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
         if tipo == 'pass':
