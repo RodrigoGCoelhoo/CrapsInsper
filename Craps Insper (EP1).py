@@ -7,12 +7,12 @@ nome = input("Olá jogador, qual o seu nome? ")
 jogar = input("Vamos jogar Craps, {}? (s/n): ".format(nome))
 
 #Figuras dados
-d1 = "+- - - -+\n|       |\n|   *   |\n|       |\n+- - - -+"
-d2 = "+- - - -+\n| *     |\n|       |\n|     * |\n+- - - -+"
-d3 = "+- - - -+\n| *     |\n|   *   |\n|     * |\n+- - - -+"
-d4 = "+- - - -+\n| *   * |\n|       |\n| *   * |\n+- - - -+"
-d5 = "+- - - -+\n| *   * |\n|   *   |\n| *   * |\n+- - - -+"
-d6 = "+- - - -+\n| *   * |\n| *   * |\n| *   * |\n+- - - -+"
+fig_d1 = "+- - - -+\n|       |\n|   *   |\n|       |\n+- - - -+"
+fig_d2 = "+- - - -+\n| *     |\n|       |\n|     * |\n+- - - -+"
+fig_d3 = "+- - - -+\n| *     |\n|   *   |\n|     * |\n+- - - -+"
+fig_d4 = "+- - - -+\n| *   * |\n|       |\n| *   * |\n+- - - -+"
+fig_d5 = "+- - - -+\n| *   * |\n|   *   |\n| *   * |\n+- - - -+"
+fig_d6 = "+- - - -+\n| *   * |\n| *   * |\n| *   * |\n+- - - -+"
 
 #Loop para setar jogar True ou False. Vai fazer mais sentido mais para frente quando quisermos fechar o loop grande do jogo
 while type(jogar) == str:
@@ -32,12 +32,21 @@ def dados():
 
 #Função que retorna a imagem do dado
 def dados_front(dado):
-    lista_dados = [d1,d2,d3,d4,d5,d6]
+    lista_dados = [fig_d1, fig_d2, fig_d3, fig_d4, fig_d5, fig_d6]
     for item in lista_dados:
         if (lista_dados.index(item) + 1) == dado:
             return item
-    
 
+#Função que printa os dados usando a função dados_front
+def printar_dados()
+    print("Dado 1:") 
+    print(dados_front(dado_1))
+    print("Dado 2:")
+    print(dados_front(dado_2))
+    print("Soma dos dados:", soma_dados)
+    return 
+    
+    
 #Funções para jogadas:
 
 #JOGADA PASS LINE BET
@@ -58,19 +67,19 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
         print("Você segue agora para a fase 'Point'.")
         while True:
 
-            dado_1, dado_2, soma_dados = soma_dados()
+            dado_1, dado_2, soma_dados = dados()
 
             while True:
                 tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \
                 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
                 if tipo == 'field':
-                    fichas = field()
+                    fichas = field(aposta, fichas)
                     break
                 elif tipo == 'any':
-                    fichas = any_crops()
+                    fichas = any_crops(aposta, fichas)
                     break
                 elif tipo == 'twelve':
-                    fichas = twelve()
+                    fichas = twelve(aposta, fichas)
                     break
                 else:
                     print('\033[1;31Você não escreveu direito, digite novamente de acordo com a legenda!')
@@ -89,7 +98,10 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
         
 #JOGADA FIELD
 def field(aposta, fichas):
-    if soma_dados() in {5, 6, 7, 8}:
+    print("Dado 1:\n", dados_front(dado_1))
+    print("Dado 2:\n", dados_front(dado_2))
+    print("Soma dos dados: ", soma_dados)
+    if soma_dados in {5, 6, 7, 8}:
         print ("Infelizmente você perdeu, {}!".format(nome))
         fichas -= aposta
         return fichas
@@ -128,7 +140,7 @@ def twelve(soma_dados, aposta, fichas):
 
 while fichas > 0 and jogar:
 
-    dado_1, dado_2, soma_dados = soma_dados()
+    dado_1, dado_2, soma_dados = dados()
 
     while True:
         tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
