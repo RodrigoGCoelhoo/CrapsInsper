@@ -23,9 +23,14 @@ while type(jogar) == str:
         jogar = input("Responda apenas com 's' ou 'n'. Tente novamente: ")
 
 #Função soma dos dados
-def soma_dados():
-    soma_dados = rd.randint(1,6) + rd.randint(1,6)
-    return soma_dados
+def dados():
+    dado_1 = rd.randint(1,6)
+    dado_2 = rd.randint(1,6)
+    soma_dados = dado_1 + dado_2
+    return dado_1, dado_2, soma_dados
+
+def dados_front(dado_1, dado_2)
+
 
 #Funções para jogadas
 
@@ -38,13 +43,25 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
         fichas += aposta
         return fichas
     elif soma_dados in {2, 3, 12}:
-        print("Infelizmente você perdeu, {}.", format(nome))
+        print("Infelizmente você perdeu, {}.".format(nome))
         fichas -= aposta
         return fichas
     else:
-        jogada = 'Point'
+        fase = "Point"
         valor_guardado = soma_dados
         print("Você segue agora para a fase 'Point'.")
+        while True:
+            soma_dados = soma_dados()[2]
+            if soma_dados == valor_guardado:
+                jogador ganha
+                fase = 'Come out'
+                break
+            elif soma_dados == 7:
+                jogador perde
+                fase = 'Come out'
+                break
+            
+                
         
 #JOGADA FIELD
 def field(aposta, fichas):
@@ -83,7 +100,12 @@ def twelve(soma_dados, aposta, fichas):
         fichas += 30*aposta
         return fichas
 
+#Loop grande do jogo
+
 while fichas > 0 and jogar:
+
+    dado_1, dado_2, soma_dados = soma_dados()
+
     while True:
         tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
