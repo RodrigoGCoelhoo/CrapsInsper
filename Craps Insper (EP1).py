@@ -50,7 +50,7 @@ def printar_dados()
 #Funções para jogadas:
 
 #JOGADA PASS LINE BET
-def pass_line_bet(fase, aposta, fichas):
+def pass_line_bet(fichas):
     if fase != "Come out":
         return "Essa jogada só pode ser feita na rodada 'Come out'."
     if soma_dados in {7, 11}:
@@ -70,8 +70,8 @@ def pass_line_bet(fase, aposta, fichas):
             dado_1, dado_2, soma_dados = dados()
 
             while True:
-                tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \
-                \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
+                tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \033[1;33mfield \n\
+\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;32mNenhuma nova aposta = \033[1;33mn\n\033[1;37m: ' )
                 if tipo == 'field':
                     fichas = field(aposta, fichas)
                     break
@@ -97,6 +97,7 @@ def pass_line_bet(fase, aposta, fichas):
                 
         
 #JOGADA FIELD
+def field(fichas)
     print("Dado 1:\n", dados_front(dado_1))
     print("Dado 2:\n", dados_front(dado_2))
     print("Soma dos dados: ", soma_dados)
@@ -146,7 +147,7 @@ while fichas > 0 and jogar:
     while True:
         print('Você está na fase \033[1;34mCome Out')
         tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
-\033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
+\033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
         if tipo == 'pass':
             fichas = pass_line_bet(fichas)
             break
