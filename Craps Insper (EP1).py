@@ -2,7 +2,7 @@ import random as rd
 import time
 
 #Configuraçøes básicas
-fichas = 1000
+
 nome = input("Olá jogador, qual o seu nome? ")
 jogar = input("Vamos jogar Craps, {}? (s/n): ".format(nome))
 
@@ -41,7 +41,7 @@ def dados_front(dado):
 #Funções para jogadas:
 
 #JOGADA PASS LINE BET
-def pass_line_bet(fase, soma_dados, aposta, fichas):
+def pass_line_bet(fase, aposta, fichas):
     if fase != "Come out":
         return "Essa jogada só pode ser feita na rodada 'Come out'."
     if soma_dados in {7, 11}:
@@ -88,8 +88,8 @@ def pass_line_bet(fase, soma_dados, aposta, fichas):
                 
         
 #JOGADA FIELD
-def field(aposta, fichas):
-    if soma_dados() in {5, 6, 7, 8}:
+def field(fichas):
+    if soma_dados in {5, 6, 7, 8}:
         print ("Infelizmente você perdeu, {}!".format(nome))
         fichas -= aposta
         return fichas
@@ -107,7 +107,7 @@ def field(aposta, fichas):
         return fichas
 
 #JOGADA ANY CROPS
-def any_crops(soma_dados, aposta, fichas):
+def any_crops(fichas):
     if soma_dados in {2, 3, 12}:
         print("Parabéns {}, você ganhou 7x!!".format(nome))
         fichas += 7*aposta
@@ -118,34 +118,45 @@ def any_crops(soma_dados, aposta, fichas):
         return fichas
 
 #JOGADA TWELVE
-def twelve(soma_dados, aposta, fichas):
+def twelve(fichas):
     if soma_dados == 12:
         print("PARABÉNS {}, você ganhou muito!!!",format(nome))
         fichas += 30*aposta
         return fichas
 
 #Loop grande do jogo
-
+fichas = 1000
 while fichas > 0 and jogar:
 
     dado_1, dado_2, soma_dados = soma_dados()
+    print('Você tem {} fichas'.format(fichas))
+    aposta = int(input('Qual a sua aposta?'))
+
 
     while True:
+        print('Você está na fase \033[1;34mCome Out')
         tipo = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \
 \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m:')
         if tipo == 'pass':
-            fichas = pass_line_bet()
+            fichas = pass_line_bet(fichas)
             break
         elif tipo == 'field':
-            fichas = field()
+            fichas = field(fichas)
             break
         elif tipo == 'any':
-            fichas = any_crops()
+            fichas = any_crops(fichas)
             break
         elif tipo == 'twelve':
-            fichas = twelve()
+            fichas = twelve(fichas)
             break
         else:
-            print('\033[1;31Você não escreveu direito, digite novamente de acordo com a legenda!')
+            print('\033[1;31mVocê não escreveu direito, digite novamente de acordo com a legenda!')
+
+if fichas <= 0:
+    print("Você perdeu todas as fichas")
+
+
+
+
             
             
