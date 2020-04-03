@@ -20,7 +20,6 @@ else:
 #Regras
 time.sleep(1)
 verif_regras = input('Você sabe as regras? (s/n)\n')
-time.sleep(1)
 while verif_regras not in {'s','n'}:
     verif_regras = input('Responda apenas "s" ou "n". Tente novamente:\n')
 if verif_regras == 'n':
@@ -41,9 +40,9 @@ if verif_regras == 'n':
         print('|\033[1;32m', item[0],  ' '*(15 - len(item[0])), '\033[0;37m|',  ' '*5, item[1], ' '*5, '|', ' '*3, item[2], ' '*4, '| ', item[3], ' '*(32 - len(item[3])), '| ', item[4], ' '*(33 - len(item[4])), '|')
 
     print('+--------------------------------------------------------------------------------------------------------------------------+')
-    print('\n(\033[1;32m*\033[0;37m) Caso acerte os números 4, 5, 6, 8, 9 e 10, você passa para a fase \033[1;34mPoint\033[0;37m), em que só sairá caso a soma dos novos danos\n\
-    lançados dê 7, em que você \033[1;31mperde a aposta\033[0;37m), ou dê igual à soma dos dados na última fase \033[1;34mCome out\033[0;37m), em que você \033[1;36mganha a aposta\033[0;37m).\n\
-    Durante a fase \033[1;34mPoint\033[0;37m) você poderá continuar fazendo outras apostas.\n')
+    print('\n(\033[1;32m*\033[0;37m) Caso acerte os números 4, 5, 6, 8, 9 ou 10, você passa para a fase \033[1;34mPoint\033[0;37m, da qual só sairá caso a soma dos novos dados\n\
+    lançados dê 7, em que você \033[1;31mperde a aposta\033[0;37m, ou dê igual à soma dos dados na última fase \033[1;34mCome out\033[0;37m, em que você \033[1;36mganha a aposta\033[0;37m.\n\
+    Durante a fase \033[1;34mPoint\033[0;37m você poderá continuar fazendo outras apostas.\n')
     time.sleep(10)
 
     vamos_jogar = input('Vamos ao jogo então, \033[1;34m{}\033[0;37m? (s/n)\n'.format(nome))
