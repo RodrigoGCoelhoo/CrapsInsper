@@ -1,6 +1,7 @@
 import random as rd
 import time
 
+
 #Configurações básicas
 nome = input("\033[0;37mOlá jogador, qual o seu nome? \n")
 time.sleep(1)
@@ -15,6 +16,46 @@ if jogar == 'n':
     exit()
 else:
     jogar = True
+
+#Regras
+time.sleep(1)
+verif_regras = input('Você sabe as regras? (s/n)\n')
+time.sleep(1)
+while verif_regras not in {'s','n'}:
+    verif_regras = input('Responda apenas "s" ou "n". Tente novamente:\n')
+if verif_regras == 'n':
+    time.sleep(1)
+    print("Você irá fazer uma aposta em cima da \033[4;37msoma\033[0;37m de dois dados que serão lançados aleatoriamente.")
+    time.sleep(5)
+    print("A tabela a seguir informa em que fase você pode fazer cada jogada e em quais resultados você perde ou ganha:\n")
+    time.sleep(6)
+    print('+--------------------------------------------------------------------------------------------------------------------------+')
+    print('| \033[1;32mJogada\033[0;37m           | Fase \033[1;34mCome Out\033[0;37m | Fase \033[1;34mPoint\033[0;37m | \033[1;31mSoma que perde a aposta\033[0;37m            | \033[1;36mSoma que ganha a aposta\033[0;37m             |')
+    print('+--------------------------------------------------------------------------------------------------------------------------+')
+    tab = ([['Pass Line Bet *', '✓', 'x', '2, 3 e 12', '7 e 11'],
+    ['Field', '✓', '✓', '5, 6, 7 e 8', '3, 4, 9, 10, 11, 2 (2x) e 12 (3x)'], 
+    ['Any Crops', '✓', '✓', '4, 5, 6, 7, 8, 9, 10 e 11', '2 (7x), 3 (7x) e 12 (7x)'],
+    ['Twelve', '✓', '✓', '2, 3, 4, 5, 6, 7, 8, 9, 10 e 11', '12 (30x)           '] ]) 
+
+    for item in tab:
+        print('|\033[1;32m', item[0],  ' '*(15 - len(item[0])), '\033[0;37m|',  ' '*5, item[1], ' '*5, '|', ' '*3, item[2], ' '*4, '| ', item[3], ' '*(32 - len(item[3])), '| ', item[4], ' '*(33 - len(item[4])), '|')
+
+    print('+--------------------------------------------------------------------------------------------------------------------------+')
+    print('\n(\033[1;32m*\033[0;37m) Caso acerte os números 4, 5, 6, 8, 9 e 10, você passa para a fase \033[1;34mPoint\033[0;37m), em que só sairá caso a soma dos novos danos\n\
+    lançados dê 7, em que você \033[1;31mperde a aposta\033[0;37m), ou dê igual à soma dos dados na última fase \033[1;34mCome out\033[0;37m), em que você \033[1;36mganha a aposta\033[0;37m).\n\
+    Durante a fase \033[1;34mPoint\033[0;37m) você poderá continuar fazendo outras apostas.\n')
+    time.sleep(10)
+
+    vamos_jogar = input('Vamos ao jogo então, \033[1;34m{}\033[0;37m? (s/n)\n'.format(nome))
+    while vamos_jogar not in {'s','n'}:
+        vamos_jogar = input("Não entendi sua resposta. Digite apenas 's' ou 'n'.\n")
+    if vamos_jogar == 'n':
+        time.sleep(1)
+        print('O jogo é difícil mesmo! Até mais, \033[1;34m{}\033[0;37m'.format(nome))
+        exit()
+        
+time.sleep(1)
+print('Então vamos lá!')
 
 #Figuras dados
 fig_d1 = "+- - - -+\n|       |\n|   *   |\n|       |\n+- - - -+"
