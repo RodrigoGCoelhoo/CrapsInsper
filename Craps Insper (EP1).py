@@ -273,9 +273,9 @@ def loop_jogar(aposta):
     while True:
 
         if fase != 'Point':
-            resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
+            resposta = input('\033[1;31mEscolha sua jogada\033[1;37m: \n\033[1;32mPass Line Bat = \033[1;33mpass \n\033[1;32mField = \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
         else:
-            resposta = input('\033[1;31mEscolha o seu tipo de aposta: \n\033[1;32mField = \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
+            resposta = input('\033[1;31mEscolha sua jogada\033[1;37m: \n\033[1;32mField = \033[1;33mfield \n\033[1;32mAny Crops = \033[1;33many \n\033[1;32mTwelve = \033[1;33mtwelve \n\033[1;37m: ')
 
         if resposta == 'pass':
             time.sleep(1)
