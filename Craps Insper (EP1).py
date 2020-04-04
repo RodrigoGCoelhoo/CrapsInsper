@@ -1,3 +1,7 @@
+# EP1 - Design de Software
+
+# Equipe: Rodrigo Coelho e Paulo Kim
+
 import random as rd
 import time
 
